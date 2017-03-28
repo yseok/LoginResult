@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -22,7 +23,7 @@ import java.util.Arrays;
 import static com.yuseok.android.loginresult.R.id.editEmail;
 import static com.yuseok.android.loginresult.R.id.loginButton;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     // 자동로그인소스
     private CallbackManager callbackManager;
@@ -33,8 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     EditText editId, editPw;
-    Button btnLogin;
-
+    Button btnLogin, btnSignup;
 
 
     @Override
@@ -46,6 +46,17 @@ public class MainActivity extends AppCompatActivity {
         editPw = (EditText) findViewById(R.id.editPw);
 
         btnLogin = (Button) findViewById(R.id.btnLogin);
+        btnSignup = (Button) findViewById(R.id.btnSignup);
+
+
+        btnSignup.setOnClickListener(this);
+        btnLogin.setOnClickListener(this);
+
+
+
+
+
+        // 페이스북 로그인
 
         callbackManager = CallbackManager.Factory.create();
 
@@ -55,32 +66,31 @@ public class MainActivity extends AppCompatActivity {
         faceLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(final LoginResult loginResult) {
+
                 // 사용자 정보 획득
-                GraphRequest graphRequest = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                final GraphRequest graphRequest = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
                     public void onCompleted(JSONObject object, GraphResponse response) {
 
 
-                        Log.v("result",object.toString());
+                        Log.v("result", object.toString());
                         if (response.getError() != null) {
 
                         } else {
                             Log.i("TAG", "user: " + object.toString());
                             Log.i("TAG", "AccessToken: " + loginResult.getAccessToken().getToken());
 //                            setResult(RESULT_OK);
-                            JSONObject jsonObject = new JSONObject();
-                            String resultId = jsonObject.getString("id");
-                            String resultPassword = jsonObject.getString("password");
-//                            tv_parsing.setText(resultId+"\n"+resultPassword);
 
 
 
                         }
 
-                        Intent intent=new Intent(MainActivity.this,InappActivity.class);
-//                        String[] userString = new String[] {object.toString()};
+
+                        Intent intent = new Intent(MainActivity.this, InappActivity.class);
                         intent.putExtra("user", object.toString());
+//                        intent.putExtra("id", resultId.toString());
                         startActivityForResult(intent, RESULT_OK);
+
                     }
                 });
 
@@ -99,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onError(FacebookException error) {
-                Log.e("LoginErr",error.toString());
+                Log.e("LoginErr", error.toString());
             }
         });
     }
@@ -110,6 +120,26 @@ public class MainActivity extends AppCompatActivity {
         //패이스북 로그인 결과를 콜백에 담는다.
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
+
+    // 로그인과 회원가입을 눌렀을 경우
+    Intent intent;
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnLogin:
+                intent = new Intent(getApplicationContext(),InappActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnSignup:
+                intent = new Intent(getApplicationContext(),RegistActivity.class);
+                startActivity(intent);
+        }
+
+    }
+
+    // 회원가입창으로 넘겨주기
+
 
 
 //    // 페이스북 로그인

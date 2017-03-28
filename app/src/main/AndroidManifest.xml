@@ -28,6 +28,7 @@
             android:value="@string/facebook_app_id" />
 
         <activity android:name=".InappActivity"></activity>
+        <activity android:name=".RegistActivity"/>
     </application>
 
 </manifest>

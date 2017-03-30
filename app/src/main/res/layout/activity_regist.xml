@@ -9,9 +9,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.yuseok.android.exlogin.RegistActivity">
+    tools:context="com.yuseok.android.loginresult.RegistActivity">
 
-    <EditText
+    <com.yuseok.android.loginresult.ClearEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
@@ -19,7 +19,7 @@
         android:hint="Email"
         android:id="@+id/etEmail" />
 
-    <EditText
+    <com.yuseok.android.loginresult.ClearEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
@@ -27,7 +27,7 @@
         android:hint="Password"
         android:id="@+id/editPw" />
 
-    <EditText
+    <com.yuseok.android.loginresult.ClearEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.yuseok.android.loginresult.MainActivity">
 
-    <EditText
+    <com.yuseok.android.loginresult.ClearEditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
@@ -18,7 +18,7 @@
         android:id="@+id/editEmail"
         android:hint="이메일" />
 
-    <EditText
+    <com.yuseok.android.loginresult.ClearEditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
@@ -29,34 +29,57 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:hint="비밀번호" />
-
-    <Button
-        android:text="Log in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editPw"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="51dp"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="51dp"
-        android:id="@+id/btnLogin" />
-
+<!--
     <com.facebook.login.widget.LoginButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/loginButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="97dp" />
+
+-->
+    <CheckBox
+        android:text="자동로그인"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/btnLogin"
-        android:layout_alignLeft="@+id/btnLogin"
-        android:layout_alignStart="@+id/btnLogin" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:id="@+id/checkBox" />
 
     <Button
         android:text="회원가입"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/loginButton"
+        android:id="@+id/btnSignup"
+        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/editPw"
-        android:layout_toEndOf="@+id/editPw"
-        android:id="@+id/btnSignup" />
+        android:layout_toEndOf="@+id/editPw" />
+
+    <Button
+        android:text="Log in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnLogin"
+        android:layout_alignBaseline="@+id/btnSignup"
+        android:layout_alignBottom="@+id/btnSignup"
+        android:layout_toLeftOf="@+id/btnSignup"
+        android:layout_toStartOf="@+id/btnSignup"
+        android:layout_marginRight="39dp"
+        android:layout_marginEnd="39dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginButton"
+        android:onClick="facebookLoginOnClick"
+        android:background="@drawable/com_facebook_button_icon_blue"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/checkBox"
+        android:layout_alignStart="@+id/checkBox"
+        android:layout_marginBottom="25dp" />
+
+
 
 </RelativeLayout>

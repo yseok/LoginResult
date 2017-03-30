@@ -21,7 +21,8 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/com_facebook_button_icon_blue"
             android:id="@+id/imageView"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:scaleType="fitXY" />
 
         <TextView
             android:text="TextView"
@@ -32,6 +33,13 @@
             android:id="@+id/textUser"
             android:layout_weight="1"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <Button
+            android:text="Painter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnPainter"
+            android:layout_weight="1" />
 
     </LinearLayout>
 
